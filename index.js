@@ -5,7 +5,7 @@
  */
 'use strict';
 
-const { basename, dirname, join, resolve } = require('path');
+const { basename, dirname, join, normalize, resolve } = require('path');
 
 const fs          = require('fs');
 const Module      = require('module');
@@ -94,16 +94,49 @@ function getModuleName(defaultName) {
 }
 
 class Kraeve {
+    /**
+     * Check wither a pseudo-module is loaded.
+     *
+     * @param {String} moduleName
+     *
+     * @return {Boolean}
+     */
     has(moduleName) {
         return requireModules.has(moduleName);
     }
 
+    /**
+     * Get the path to a pseudo-module
+     *
+     * @param {String} moduleName
+     *
+     * @return {String}
+     */
     get(moduleName) {
         return requireModules.get(moduleName);
     }
 
-    set(moduleName, modulePath) {
+    /**
+     * Add a path to a pseudo-module
+     *
+     * @param {String} moduleName   - The name of the module
+     * @param {String} modulePath   - The path to the module
+     * @param {String} [rootModule] - The parent to read the module from
+     */
+    set(moduleName, modulePath, rootModule = null) {
+        if (rootModule) {
+            modulePath = join(
+                dirname(
+                    require.resolve(rootModule)
+                ),
+                modulePath
+            );
+        }
+
         modulePath = resolve(modulePath);
+        if (fs.lstatSync(modulePath).isFile()) {
+            modulePath = dirname(modulePath);
+        }
         requireModules.set(moduleName, modulePath);
         return this;
     }

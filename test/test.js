@@ -39,6 +39,12 @@ test('Kraeve can add new pseudo-modules', () => {
     assert.equal(require('kraeve-test/test/test.js'), module.exports);
 });
 
+test('Kraeve can add new pseudo-modules from other modules', () => {
+    const kraeve = require('../index.js');
+    kraeve.set('kraeve-test', './test/test.js', 'kraeve');
+    assert.equal(require('kraeve-test/test'), module.exports);
+})
+
 process.stdout.write(
     `\n${test.success}/${test.success + test.failure} (${
         (((test.success / (test.success + test.failure)) * 1000) | 0) / 10

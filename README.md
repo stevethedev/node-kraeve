@@ -36,6 +36,15 @@ With Kraeve, ```require()``` treats your application as if it were a module:
 const Article = require('my-project/lib/database/models/article');
 ```
 
+**Add Pseudo-Modules**
+```javascript
+// Add a module relative to the project
+require('kraeve').set('my-project-lib', './lib');
+
+// Optionally, specify a module-name to read from
+require('kraeve').set('my-project-etc', './etc', 'kraeve');
+```
+
 ## Global Without Collisions
 Kraeve works on the top-level folder for an application, so it can be installed
 as a dependency without breaking other projects. If your project is included as
