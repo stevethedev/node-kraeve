@@ -1,0 +1,23 @@
+{
+  "name": "kraeve",
+  "version": "1.0.0",
+  "description": "Extend require() to read from an application's root directory.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stevethedev/node-kraeve.git"
+  },
+  "keywords": [
+    "require",
+    "kraeve"
+  ],
+  "author": "Steven Jimenez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stevethedev/node-kraeve/issues"
+  },
+  "homepage": "https://github.com/stevethedev/node-kraeve#readme"
+}
