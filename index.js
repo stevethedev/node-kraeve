@@ -13,9 +13,13 @@ const rootDir     = (require.main && require.main.filename)
     ? dirname(require.main.filename)
     : global.process.cwd();
 
+const requireModules = new Map();
+
 const { moduleName, modulePath } = getModuleName('app');
 const baseRequire = Module.prototype.require;
 const { _resolveFilename } = Module;
+
+requireModules.set(moduleName, modulePath);
 
 /**
  * Overwrite the require() function with a "binary-compatible" replacement
@@ -55,8 +59,8 @@ Module._resolveFilename = function(request, ...args) {
 function getModulePath(path) {
     const requirePath = path.split('/');
     const requireName = requirePath.shift();
-    if (moduleName === requireName) {
-        requirePath.unshift(modulePath);
+    if (requireModules.has(requireName)) {
+        requirePath.unshift(requireModules.get(requireName));
         path = join(...requirePath);
     }
     return path;
@@ -88,3 +92,21 @@ function getModuleName(defaultName) {
 
     return { moduleName, modulePath };
 }
+
+class Kraeve {
+    has(moduleName) {
+        return requireModules.has(moduleName);
+    }
+
+    get(moduleName) {
+        return requireModules.get(moduleName);
+    }
+
+    set(moduleName, modulePath) {
+        modulePath = resolve(modulePath);
+        requireModules.set(moduleName, modulePath);
+        return this;
+    }
+}
+
+module.exports = new Kraeve();
