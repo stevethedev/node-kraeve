@@ -1,6 +1,6 @@
 {
   "name": "kraeve",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Extend require() to read from an application's root directory.",
   "main": "index.js",
   "scripts": {
