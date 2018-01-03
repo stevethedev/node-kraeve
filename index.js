@@ -5,7 +5,7 @@
  */
 'use strict';
 
-const { basename, dirname, join, sep, resolve } = require('path');
+const { basename, dirname, join, resolve } = require('path');
 
 const fs          = require('fs');
 const Module      = require('module');
@@ -56,7 +56,7 @@ function getModulePath(path) {
     const requirePath = path.split('/');
     const requireName = requirePath.shift();
     if (moduleName === requireName) {
-        requirePath.unshift(modulePath)
+        requirePath.unshift(modulePath);
         path = join(...requirePath);
     }
     return path;
@@ -67,14 +67,15 @@ function getModulePath(path) {
  *
  * @method getModuleName
  *
+ * @param {String} defaultName
+ *
  * @return {String}
  */
 function getModuleName(defaultName) {
     let moduleName = defaultName;
-    let pkg = null;
-
     let modulePath = rootDir;
     let lastPath   = null;
+
     while (lastPath !== modulePath) {
         if (fs.existsSync(join(modulePath, 'package.json'))) {
             const pkg = require(join(modulePath, 'package.json'));
