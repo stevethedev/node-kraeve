@@ -1,4 +1,5 @@
 # Kraeve
+[![npm version](https://badge.fury.io/js/kraeve.svg)](https://badge.fury.io/js/kraeve)
 
 Kraeve (pronounced "Crave") is an NPM module that solves the problem of ugly or
 complicated ```require()``` paths in deeply nested or highly structured node
