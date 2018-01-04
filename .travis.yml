@@ -1,0 +1,31 @@
+# Notification Options
+notifications:
+  email: false
+
+# Regent supports Node.js v8
+language: node_js
+node_js:
+  - '8' # LTS as of 2017-12-31
+
+# Operating Systems
+os:
+  - linux
+  - osx
+  - windows
+
+env:
+  matrix:
+    - NODE_ENV=development
+    - NODE_ENV=production
+
+## begin build steps
+####################
+
+before_install:
+  - sudo apt-get -qq update
+
+before_script:
+  - npm install
+
+script:
+  - npm run test
