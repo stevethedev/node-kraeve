@@ -61,19 +61,19 @@ You can start benefiting from Kraeve in three steps:
 
 1. Create a ```package.json```. You probably already have this, but make sure
     your project doesn't have the same name as any of your dependencies!
-```bash
-npm init
-```
+    ```bash
+    npm init
+    ```
 
 2. Install Kraeve with NPM Package Manager:
-```bash
-npm install --save kraeve
-```
+    ```bash
+    npm install --save kraeve
+    ```
 
 3. Include Kraeve early in your program's entry-point:
-```javascript
-require('kraeve');
-```
+    ```javascript
+    require('kraeve');
+    ```
 
 And that's it! Kraeve is now installed on your project!
 
