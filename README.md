@@ -8,8 +8,8 @@ complicated ```require()``` paths in deeply nested or highly structured node
 projects. When developing a Node application (or library), every file in the
 project must be aware of the location of all of its dependencies.
 
-Given a project, named ```"my-project"```, you may have a folder structure that
-looks something like this:
+Given a project, named ```"my-project"``` (in package.json), you may have a 
+folder structure that looks something like this:
 
 ```
 ./my-project/tests/database/models/article.js
@@ -24,7 +24,7 @@ const Article = require('./article');
 
 **Require Article from the Article Test**
 ```javascript
-const Article = require('../../../../lib/database/models/article');
+const Article = require('../../../lib/database/models/article');
 ```
 
 This is inconvenient, difficult to keep track of, and closely ties your
