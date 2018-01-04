@@ -21,9 +21,6 @@ env:
 ## begin build steps
 ####################
 
-before_install:
-  - sudo apt-get -qq update
-
 before_script:
   - npm install
 
