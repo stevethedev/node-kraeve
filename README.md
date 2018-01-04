@@ -1,5 +1,6 @@
 # Kraeve
 [![npm version](https://badge.fury.io/js/kraeve.svg)](https://badge.fury.io/js/kraeve)
+[![Build Status](https://travis-ci.org/stevethedev/node-kraeve.svg?branch=master)](https://travis-ci.org/stevethedev/node-kraeve)
 [![Build status](https://ci.appveyor.com/api/projects/status/2oxmdv6sib811ept/branch/master?svg=true)](https://ci.appveyor.com/project/stevethedev/node-kraeve/branch/master)
 
 Kraeve (pronounced "Crave") is an NPM module that solves the problem of ugly or
