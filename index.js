@@ -20,6 +20,26 @@ const baseRequire = Module.prototype.require;
 const { _resolveFilename } = Module;
 
 requireModules.set(moduleName, modulePath);
+setParentModules();
+
+/**
+ * Checks whether this is being run from within a node_modules folder, and
+ * climbs the tree to include the parent file. This addresses an issue where
+ * Mocha would take ownership of the Kraeve primary directory.
+ *
+ * @method setParentModules
+ */
+function setParentModules() {
+    let modPath = modulePath.split('/');
+    if (modPath.includes('node_modules')) {
+        modPath.splice(modPath.indexOf('node_modules'));
+    }
+    const { moduleName:modName } = getModuleName(
+        modPath[modPath.length - 1],
+        modPath = modPath.join('/'),
+    );
+    requireModules.set(modName, modPath);
+}
 
 /**
  * Overwrite the require() function with a "binary-compatible" replacement
@@ -75,9 +95,8 @@ function getModulePath(path) {
  *
  * @return {String}
  */
-function getModuleName(defaultName) {
+function getModuleName(defaultName, modulePath = rootDir) {
     let moduleName = defaultName;
-    let modulePath = rootDir;
     let lastPath   = null;
 
     while (lastPath !== modulePath) {
